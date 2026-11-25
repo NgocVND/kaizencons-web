@@ -2,7 +2,7 @@
 # Sửa dòng "repo" bên dưới thành: tên-tài-khoản-github/kaizencons-web
 backend:
   name: github
-  repo: TEN-TAI-KHOAN-GITHUB/kaizencons-web
+  repo: NgocVND/kaizencons-web
   branch: main
   commit_messages:
     update: "Cập nhật {{collection}} “{{slug}}”"
