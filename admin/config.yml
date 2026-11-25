@@ -1,0 +1,81 @@
+# Trang quản trị KAIZENCONS (Decap CMS)
+# Sửa dòng "repo" bên dưới thành: tên-tài-khoản-github/kaizencons-web
+backend:
+  name: github
+  repo: TEN-TAI-KHOAN-GITHUB/kaizencons-web
+  branch: main
+  commit_messages:
+    update: "Cập nhật {{collection}} “{{slug}}”"
+
+site_url: https://kaizencons.netlify.app
+display_url: https://kaizencons.netlify.app
+logo_url: /images/logo.png
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: noi-dung
+    label: Nội dung website
+    editor: { preview: false }
+    files:
+      - name: projects
+        label: Dự án
+        file: data/projects.json
+        fields:
+          - label: Danh sách dự án
+            name: items
+            widget: list
+            label_singular: dự án
+            summary: "{{fields.name_vi}} – {{fields.location_vi}}"
+            fields:
+              - { label: "Tên dự án (Tiếng Việt)", name: name_vi, widget: string }
+              - { label: "Tên dự án (English)", name: name_en, widget: string, required: false }
+              - { label: "Địa điểm (Tiếng Việt)", name: location_vi, widget: string, required: false }
+              - { label: "Địa điểm (English)", name: location_en, widget: string, required: false }
+              - { label: "Phạm vi công việc (Tiếng Việt)", name: scope_vi, widget: string, required: false, hint: "VD: Mô hình BIM MEP, thi công hệ thống điện" }
+              - { label: "Phạm vi công việc (English)", name: scope_en, widget: string, required: false }
+              - { label: "Năm", name: year, widget: string, required: false }
+              - { label: "Ảnh dự án", name: image, widget: image, required: false, hint: "Ảnh ngang, khoảng 1600×900 px, dưới 500 KB" }
+              - { label: "Hiện trên banner trang chủ", name: featured, widget: boolean, default: false, required: false }
+
+      - name: partners
+        label: Khách hàng & Đối tác
+        file: data/partners.json
+        fields:
+          - label: Danh sách đối tác
+            name: items
+            widget: list
+            label_singular: đối tác
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Tên công ty", name: name, widget: string }
+              - { label: "Logo", name: logo, widget: image, hint: "Ảnh PNG nền trong suốt là đẹp nhất" }
+              - { label: "Website (không bắt buộc)", name: url, widget: string, required: false }
+
+      - name: news
+        label: Tin tức
+        file: data/news.json
+        fields:
+          - label: Danh sách tin
+            name: items
+            widget: list
+            label_singular: tin
+            summary: "{{fields.date}} – {{fields.title_vi}}"
+            fields:
+              - { label: "Ngày đăng", name: date, widget: datetime, time_format: false, date_format: "DD/MM/YYYY", format: "YYYY-MM-DD" }
+              - { label: "Loại", name: category, widget: select, options: ["Tin tức", "Sự kiện", "Case study"], default: "Tin tức" }
+              - { label: "Tiêu đề (Tiếng Việt)", name: title_vi, widget: string }
+              - { label: "Tiêu đề (English)", name: title_en, widget: string, required: false }
+              - { label: "Tóm tắt (Tiếng Việt)", name: summary_vi, widget: text, required: false }
+              - { label: "Tóm tắt (English)", name: summary_en, widget: text, required: false }
+              - { label: "Ảnh", name: image, widget: image, required: false }
+
+      - name: settings
+        label: Thông tin liên hệ
+        file: data/settings.json
+        fields:
+          - { label: "Email", name: email, widget: string, required: false }
+          - { label: "Điện thoại / WhatsApp", name: phone, widget: string, required: false }
+          - { label: "Địa chỉ (Tiếng Việt)", name: address_vi, widget: string, required: false }
+          - { label: "Địa chỉ (English)", name: address_en, widget: string, required: false }
